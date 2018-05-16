@@ -3,44 +3,48 @@
   classes, that may or may not be in the final version
 */
 
-class Vector2
+class Vector2 //Container for the current x and y velocities of objects or entities
 {
   public:
     double m_x, m_y;
     Vector2() {m_x = m_y = 0;}
-    Vector2(double & x, double & y) : m_x(x), m_y(y) {}
-    Vector2 & operator + (Vector2 & rhs) //rhs = right-hand side
+    Vector2(double x, double y) : m_x(x), m_y(y) {}
+    Vector2 operator + (Vector2 & rhs) //rhs = right-hand side
     {
-      m_x += rhs.m_x;
-      m_y += rhs.m_y;
-      return *this;
+      Vector2 temp(m_x, m_y);
+      temp.m_x += rhs.m_x;
+      temp.m_y += rhs.m_y;
+      return temp;
     }
-    Vector2 & operator - (Vector2 & rhs)
+    Vector2 operator - (Vector2 & rhs)
     {
-      m_x -= rhs.m_x;
-      m_y -= rhs.m_y;
-      return *this;
+      Vector2 temp(m_x, m_y);
+      temp.m_x -= rhs.m_x;
+      temp.m_y -= rhs.m_y;
+      return temp;
     }
-    Vector2 & operator * (Vector2 & rhs)
+    Vector2 operator * (Vector2 & rhs)
     {
-      m_x *= rhs.m_x;
-      m_y *= rhs.m_y;
-      return *this;
+      Vector2 temp(m_x, m_y);
+      temp.m_x *= rhs.m_x;
+      temp.m_y *= rhs.m_y;
+      return temp;
     }
-    Vector2 & operator / (Vector2 & rhs)
+    Vector2 operator / (Vector2 & rhs)
     {
-      m_x /= rhs.m_x;
-      m_y /= rhs.m_y;
-      return *this;
+      Vector2 temp(m_x, m_y);
+      temp.m_x /= rhs.m_x;
+      temp.m_y /= rhs.m_y;
+      return temp;
     }
 };
 
-class Position
+class Position //Container for the position of objects
 {
   public:
     double m_x, m_y;
     Position() {m_x = m_y = 0;}
-    Position(double & x, double & y) : m_x(x), m_y(y) {}
+    Position(double x, double y) : m_x(x), m_y(y) {}
     void move(Position & p, const Vector2 & velocity)
     {
       p.m_x += velocity.m_x;
@@ -52,7 +56,7 @@ class Texture {}; //Will remain empty until we have what we need for textures to
 
 
 
-class Object
+class Object //Base class for objects, i.e., things that are in-animate
 {
   private:
     Texture m_texture;
@@ -75,7 +79,7 @@ class Object
 };
 
 
-class Entity
+class Entity //Base class for entities, i.e., things that are animate
 {
   private:
     Texture m_texture;
