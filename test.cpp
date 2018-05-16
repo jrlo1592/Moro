@@ -1,5 +1,5 @@
 #include <iostream>
-#include "physics/prototypes.hpp"
+#include "prototypes.hpp"
 
 using namespace std;
 
