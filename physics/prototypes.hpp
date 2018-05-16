@@ -58,10 +58,20 @@ class Object
     Texture m_texture;
   public:
     Position m_location;
-    Object(Position & location, Texture & texture) : m_location(location), m_texture(texture)
+    Object()
+    {
+      m_location = Position();
+      m_texture = Texture();
+    }
+    Object(Position & location) : m_location(location)
     {
       m_texture = Texture();
     }
+    Object(Texture & texture) : m_texture(texture)
+    {
+      m_location = Position();
+    }
+    Object(Position & location, Texture & texture) : m_location(location), m_texture(texture) {}
 };
 
 
@@ -75,6 +85,14 @@ class Entity
     {
       m_location = Position();
       m_texture = Texture();
+    }
+    Entity(Position & location) : m_location(location)
+    {
+      m_texture = Texture();
+    }
+    Entity(Texture & texture) : m_texture(texture)
+    {
+      m_location = Position();
     }
     Entity(Position & location, Texture & texture) : m_location(location), m_texture(texture) {}
 };
