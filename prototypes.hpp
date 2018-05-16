@@ -67,10 +67,10 @@ class Position //Container for the position of objects
     double m_x, m_y;
     Position() {m_x = m_y = 0;}
     Position(double x, double y) : m_x(x), m_y(y) {}
-    void move(Position & p, const Vector2 & velocity)
+    void move(const Vector2 & velocity)
     {
-      p.m_x += velocity.m_x;
-      p.m_y += velocity.m_y;
+      m_x += velocity.m_x;
+      m_y += velocity.m_y;
     }
 };
 
