@@ -18,12 +18,22 @@ class Vector2 //Container for the current x and y velocities of objects or entit
       temp.m_y += rhs.m_y;
       return temp;
     }
+    void operator += (Vector2 & rhs)
+    {
+      m_x += rhs.m_x;
+      m_y += rhs.m_x;
+    }
     Vector2 operator - (Vector2 & rhs)
     {
       Vector2 temp(m_x, m_y);
       temp.m_x -= rhs.m_x;
       temp.m_y -= rhs.m_y;
       return temp;
+    }
+    void operator -= (Vector2 & rhs)
+    {
+      m_x -= rhs.m_x;
+      m_y -= rhs.m_y;
     }
     Vector2 operator * (Vector2 & rhs)
     {
@@ -32,12 +42,22 @@ class Vector2 //Container for the current x and y velocities of objects or entit
       temp.m_y *= rhs.m_y;
       return temp;
     }
+    void operator *= (Vector2 & rhs)
+    {
+      m_x *= rhs.m_x;
+      m_y *= rhs.m_y;
+    }
     Vector2 operator / (Vector2 & rhs)
     {
       Vector2 temp(m_x, m_y);
       temp.m_x /= rhs.m_x;
       temp.m_y /= rhs.m_y;
       return temp;
+    }
+    void operator /= (Vector2 & rhs)
+    {
+      m_x /= rhs.m_x;
+      m_y /= rhs.m_y;
     }
 };
 
