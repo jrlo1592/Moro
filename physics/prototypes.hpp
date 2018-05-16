@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   This is a temporary file containing the prototypes of potential
   classes, that may or may not be in the final version
