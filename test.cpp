@@ -23,5 +23,7 @@ int main()
 
   cout << v2.m_x << "\t" << v2.m_y << endl;
 
+  cout << "Center of circle: (" << cr.getCenter().m_x << ", " << cr.getCenter().m_y << ")" << endl;
+
   return 0;
 }
