@@ -5,6 +5,8 @@
   classes, that may or may not be in the final version
 */
 
+const Vector2 GRAVITY = Vector2(0, -9.8);
+
 class Vector2 //Container for the current x and y velocities of objects or entities
 {
   public:
@@ -61,19 +63,6 @@ class Vector2 //Container for the current x and y velocities of objects or entit
     }
 };
 
-class Position //Container for the position of objects
-{
-  public:
-    double m_x, m_y;
-    Position() {m_x = m_y = 0;}
-    Position(double x, double y) : m_x(x), m_y(y) {}
-    void move(const Vector2 & velocity)
-    {
-      m_x += velocity.m_x;
-      m_y += velocity.m_y;
-    }
-};
-
 class Texture //Will remain empty until we have what we need for textures to be introduced
 {
   private:
@@ -82,50 +71,135 @@ class Texture //Will remain empty until we have what we need for textures to be 
     Texture() {src = "";} //Preferably, a default texture
 };
 
-
-
-class Object //Base class for objects, i.e., things that are in-animate
+class RigidBody
 {
   private:
-    Texture m_texture;
+    Vector2 m_position;
+    Vector2 m_velocity;
+    Vector2 m_center;
+    double m_mass;
   public:
-    Position m_location;
-    Object()
+    RigidBody(Vector2 & position, Vector2 & velocity, double mass)
     {
-      m_location = Position();
-      m_texture = Texture();
+      m_position = position;
+      m_velocity = velocity;
+      if (mass < 0)
+        m_mass = (mass * -1);
+      else
+        m_mass = mass;
     }
-    Object(Position & location) : m_location(location)
+    Vector2 getPosition() const
     {
-      m_texture = Texture();
+      return m_position;
     }
-    Object(Texture & texture) : m_texture(texture)
+    void setPosition(Vector2 & position)
     {
-      m_location = Position();
+      m_position = position;
     }
-    Object(Position & location, Texture & texture) : m_location(location), m_texture(texture) {}
+    double getX() const
+    {
+      return m_position.m_x;
+    }
+    void setX(double x)
+    {
+      m_position.m_x = x;
+    }
+    double getY() const
+    {
+      return m_position.m_y;
+    }
+    void setY(double y)
+    {
+      m_position.m_y = y;
+    }
+    Vector2 getVelocity() const
+    {
+      return m_velocity;
+    }
+    void setVelocity(Vector2 & velocity)
+    {
+      m_velocity = velocity;
+    }
+    double getMass() const
+    {
+      return m_mass;
+    }
+    void setMass(double mass)
+    {
+      m_mass = mass;
+    }
 };
 
-
-class Entity //Base class for entities, i.e., things that are animate
+class Rectangle : public RigidBody
 {
   private:
-    Texture m_texture;
+    double m_length, m_width;
+    Vector2 m_center;
   public:
-    Position m_location;
-    Entity()
+    Rectangle(double length, double width, double mass, Vector2 & position, Vector2 & velocity) : RigidBody(position, velocity, mass)
     {
-      m_location = Position();
-      m_texture = Texture();
+      if (length < 0)
+        m_length = (length * -1);
+      else if (length == 0)
+        m_length = 0.1;
+      else
+        m_length = length;
+
+      if (width < 0)
+        m_width = (width * -1);
+      else if (width == 0)
+        m_width = 0.1;
+      else
+        m_width = width;
+      
+      m_center = Vector2((getX() + m_length / 2), (getY() + m_width / 2));
     }
-    Entity(Position & location) : m_location(location)
+
+    Vector2 DetectCollision(Rectangle & rb)
     {
-      m_texture = Texture();
+      if ((getPosition().m_x > (rb.getPosition().m_x + rb.m_length)) || (rb.getPosition().m_x > (getPosition().m_x + m_length)))
+        return Vector2();
+
+      // (0,0) is the top-left so I'm still using > for this
+      if ((getPosition().m_y > (rb.getPosition().m_y + rb.m_width)) || (rb.getPosition().m_y > (getPosition().m_y + m_width)))
+        return Vector2();
+
+      return Vector2(1, 1);
     }
-    Entity(Texture & texture) : m_texture(texture)
+
+};
+
+class Circle : public RigidBody
+{
+  private:
+    double m_radius;
+    Vector2 m_center;
+  public:
+    Circle(double radius, double mass, Vector2 & position, Vector2 & velocity) : RigidBody(position, velocity, mass)
     {
-      m_location = Position();
+      if (radius < 0)
+        m_radius = (radius * -1);
+      else if (radius == 0)
+        m_radius = 0.1;
+      else
+        m_radius = radius;
+
+      m_center = position;
     }
-    Entity(Position & location, Texture & texture) : m_location(location), m_texture(texture) {}
+    Vector2 DetectCollision(Circle & rb)
+    {
+      double distanceSquared = 0;
+      double radiiSquared = 0;
+
+      distanceSquared = ((getX() - rb.getX()) * (getX() - rb.getX())) + ((getY() - rb.getY()) * (getY() - rb.getY()));
+      radiiSquared = (m_radius + rb.m_radius) * (m_radius + rb.m_radius);
+
+      if (distanceSquared == radiiSquared) //Touching
+        return Vector2();
+      else if (distanceSquared > radiiSquared) //Not touching
+        return Vector2();
+      else //intersecting
+        return Vector2(1, 1);
+    }
 };
 
