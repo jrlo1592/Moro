@@ -126,13 +126,20 @@ class RigidBody
     {
       m_mass = mass;
     }
+    Vector2 getCenter() const
+    {
+      return m_center;
+    }
+    void setCenter(Vector2 & center)
+    {
+      m_center = center;
+    }
 };
 
 class Rectangle : public RigidBody
 {
   private:
     double m_length, m_width;
-    Vector2 m_center;
   public:
     Rectangle(double length, double width, double mass, Vector2 & position, Vector2 & velocity) : RigidBody(position, velocity, mass)
     {
@@ -150,7 +157,7 @@ class Rectangle : public RigidBody
       else
         m_width = width;
       
-      m_center = Vector2((getX() + m_length / 2), (getY() + m_width / 2));
+      setCenter(Vector2((getX() + m_length / 2), (getY() + m_width / 2)));
     }
 
     Vector2 DetectCollision(Rectangle & rb)
@@ -171,7 +178,6 @@ class Circle : public RigidBody
 {
   private:
     double m_radius;
-    Vector2 m_center;
   public:
     Circle(double radius, double mass, Vector2 & position, Vector2 & velocity) : RigidBody(position, velocity, mass)
     {
@@ -182,7 +188,7 @@ class Circle : public RigidBody
       else
         m_radius = radius;
 
-      m_center = position;
+      setCenter(position);
     }
     Vector2 DetectCollision(Circle & rb)
     {
