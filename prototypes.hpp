@@ -5,6 +5,8 @@
   classes, that may or may not be in the final version
 */
 
+// Beginning of General Types
+
 class Vector2 //Container for the current x and y velocities of objects or entities
 {
   public:
@@ -68,6 +70,12 @@ class Texture //Will remain empty until we have what we need for textures to be 
   public:
     Texture() {src = "";} //Preferably, a default texture
 };
+
+
+// End of General Types
+
+
+//Beginning of Physics Types
 
 class RigidBody
 {
@@ -206,4 +214,7 @@ class Circle : public RigidBody
         return Vector2(1, 1);
     }
 };
+
+
+//End of Physics Types
 
