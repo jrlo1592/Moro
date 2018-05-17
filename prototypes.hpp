@@ -5,8 +5,6 @@
   classes, that may or may not be in the final version
 */
 
-const Vector2 GRAVITY = Vector2(0, -9.8);
-
 class Vector2 //Container for the current x and y velocities of objects or entities
 {
   public:
