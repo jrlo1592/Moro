@@ -144,12 +144,12 @@ class RigidBody
     }
 };
 
-class Rectangle : public RigidBody
+class AABB : public RigidBody //Axis-Aligned Bounding Box
 {
   private:
     double m_length, m_width;
   public:
-    Rectangle(double length, double width, double mass, Vector2 & position, Vector2 & velocity) : RigidBody(position, velocity, mass)
+    AABB(double length, double width, double mass, Vector2 & position, Vector2 & velocity) : RigidBody(position, velocity, mass)
     {
       if (length < 0)
         m_length = (length * -1);
@@ -168,7 +168,7 @@ class Rectangle : public RigidBody
       setCenter(Vector2((getX() + m_length / 2), (getY() + m_width / 2)));
     }
 
-    Vector2 DetectCollision(Rectangle & rb)
+    Vector2 DetectCollision(AABB & rb)
     {
       if ((getPosition().m_x > (rb.getPosition().m_x + rb.m_length)) || (rb.getPosition().m_x > (getPosition().m_x + m_length)))
         return Vector2();
@@ -182,38 +182,11 @@ class Rectangle : public RigidBody
 
 };
 
-class Circle : public RigidBody
-{
-  private:
-    double m_radius;
-  public:
-    Circle(double radius, double mass, Vector2 & position, Vector2 & velocity) : RigidBody(position, velocity, mass)
-    {
-      if (radius < 0)
-        m_radius = (radius * -1);
-      else if (radius == 0)
-        m_radius = 0.1;
-      else
-        m_radius = radius;
+class OBB : public RigidBody {}; // Oriented Bounding Box
 
-      setCenter(position);
-    }
-    Vector2 DetectCollision(Circle & rb)
-    {
-      double distanceSquared = 0;
-      double radiiSquared = 0;
+class KDOP : public RigidBody {}; // I forgot what DOP stands for
 
-      distanceSquared = ((getX() - rb.getX()) * (getX() - rb.getX())) + ((getY() - rb.getY()) * (getY() - rb.getY()));
-      radiiSquared = (m_radius + rb.m_radius) * (m_radius + rb.m_radius);
-
-      if (distanceSquared == radiiSquared) //Touching
-        return Vector2();
-      else if (distanceSquared > radiiSquared) //Not touching
-        return Vector2();
-      else //intersecting
-        return Vector2(1, 1);
-    }
-};
+class ConvexHull : public RigidBody {};
 
 
 //End of Physics Types
