@@ -24,26 +24,26 @@ Considered:
 
 
 
-#Documentation
+# Documentation
 
-##Physics
+## Physics
   
-###Rigid Body Class
+### Rigid Body Class
   - Super-class for collider objects like AABB and KDOP
 
-###AABB Class
+### AABB Class
   - A simple box-collider
   - Not oriented
 
-###OBB Class
+### OBB Class
   - A simple box-collider
   - Is oriented
 
-###k-DOP Class
+### k-DOP Class
   - Polygon with k vertices
   - Is oriented
 
-###Convex Hull
+### Convex Hull
   - Polygon with minimal vertices to create a convex hull
   - Is oriented
 
