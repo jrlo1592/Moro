@@ -22,5 +22,12 @@ int main()
 
   cout << v2.m_x << "\t" << v2.m_y << endl;
 
+  v1 /= 2;
+
+  cout << v1.m_x << "\t" << v1.m_y << endl;
+
+  cout << "V1 dot V2: " << v1.dot(v2) << endl;
+  cout << "V2 dot V1: " << v2.dot(v1) << endl;
+
   return 0;
 }
