@@ -50,7 +50,7 @@
   - Polygon with k vertices
   - Is oriented
 
-### Convex Hull
+### Convex Hull Class
   - Polygon with minimal vertices to create a convex hull
   - Is oriented
 
