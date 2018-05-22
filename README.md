@@ -1,16 +1,17 @@
 # Moro
-## Completed
+## Status
+### Completed
 
 
 
-## In Progress
+### In Progress
   - Graphics Engine
   - Class Prototypes
   - Physics Engine
 
 
 
-## Required
+### Required
   - Audio Engine
   - GUI (X/Y Grid that contains a camera, and allows the creation of objects with editable properties, via GUI and scripts)
   - Scripting
@@ -18,7 +19,7 @@
 
 
 
-## Considered
+### Considered
   - Plugins
   - Asset Editor (Image editor, Audio editor, etc.)
 
