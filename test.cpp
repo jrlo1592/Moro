@@ -1,5 +1,7 @@
 #include <iostream>
-#include "prototypes.hpp"
+#include "vector2.hpp"
+#include "collision.hpp"
+#include "texture.hpp"
 
 using namespace std;
 
