@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vector2.hpp"
+#include "../math/vector2.hpp"
 
 class RigidBody
 {

@@ -1,7 +1,7 @@
 #include <iostream>
-#include "vector2.hpp"
-#include "collision.hpp"
-#include "texture.hpp"
+#include "math/vector2.hpp"
+#include "physics/collision.hpp"
+#include "graphics/texture.hpp"
 
 using namespace std;
 
