@@ -27,6 +27,12 @@
 
 # Documentation
 
+## Math
+
+### Vector2 Class
+  - Holds two doubles (x, y)
+  - Can be used for storing location, velocity, etc.
+
 ## Physics
   
 ### Rigid Body Class
@@ -47,4 +53,10 @@
 ### Convex Hull
   - Polygon with minimal vertices to create a convex hull
   - Is oriented
+
+
+## Graphics
+
+### Texture Class
+  - Contains path to image file
 
