@@ -6,7 +6,6 @@
 
 ### In Progress
   - Graphics Engine
-  - Class Prototypes
   - Physics Engine
 
 
@@ -47,11 +46,11 @@
   - Is oriented
 
 ### k-DOP Class
-  - Polygon with k vertices
+  - Polytope with k vertices
   - Is oriented
 
 ### Convex Hull Class
-  - Polygon with minimal vertices to create a convex hull
+  - Polytope with minimal vertices to create a convex hull
   - Is oriented
 
 
